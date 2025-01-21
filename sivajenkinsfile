@@ -1,0 +1,43 @@
+pipeline{
+    agent any
+stages {
+  stage('checkout') {
+    steps {
+      checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'sivad', url: 'https://github.com/SivakrishnaDaggupati/example-1.git']])
+    }
+  }
+
+  stage('file-1') {
+    steps {
+            sh 'touch file.txt'
+    }
+  }
+
+  stage('file-2') {
+    steps {
+          sh 'touch test.txt'
+    }
+  }
+
+  stage('file-3') {
+    steps {
+      sh 'touch dev.txt'
+    }
+  }
+
+  stage('file-4') {
+    steps {
+        sh 'touch deploy.txt'
+
+    }
+  }
+
+  stage('file-5') {
+    steps {
+      echo 'build is succeded'
+    }
+  }
+
+}
+
+}
